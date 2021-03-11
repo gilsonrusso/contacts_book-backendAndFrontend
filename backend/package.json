@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "dev": "yarn && nodemon src/index.js",
     "start": "node src/index.js",
     "up": "docker-compose up -d"
   },
