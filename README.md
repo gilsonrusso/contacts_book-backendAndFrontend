@@ -4,7 +4,7 @@
 
 
 ## Descrição do Projeto
-App de agenda simples com o intuido da aprendizado das tecnologia do Node Js, 
+App de agenda simples com o intuito do aprendizado das tecnologias: Node Js, 
 Vue Js, Mongo Db e Docker. O projeto contempla a criação de uma API e
 um Frontend.
 
