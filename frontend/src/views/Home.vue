@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <Modal v-if="showModal" @cancelModal="showModal = !showModal" :data="contact" />
+    <Modal
+      v-if="showModal"
+      :data="contact"
+      @save="createContact"
+      @cancel="cancelModal"
+    />
     <div class="row first">
       <div class="col-12 col-sm-6 col-md-6">
         <button @click="showModal = !showModal" class="btn btn-outline-primary">
@@ -57,6 +62,10 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    cancelModal() {
+      this.cleanForm();
+      this.showModal = false;
     },
     cleanForm() {
       this.contact = {};

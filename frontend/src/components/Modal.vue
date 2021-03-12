@@ -91,7 +91,7 @@
         </div>
         <div class="footer">
           <button @click="cancel" class="btn btn-outline-info">Cancel</button>
-          <button @click="saveContact" class="btn btn-outline-primary">
+          <button @click="save" class="btn btn-outline-primary">
             Save
           </button>
         </div>
@@ -111,17 +111,18 @@ export default {
     };
   },
   methods: {
-    saveContact() {
+    save() {
       this.$emit("save");
     },
     cancel() {
-      this.$emit("cancelModal");
+      this.$emit("cancel");
     },
     openFileDialog() {
       this.$refs.inputFile.value = null;
       this.$refs.inputFile.click();
     },
     handleFile(e) {
+      this.data.image = e.target.files[0]
       let image = e.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(image);
