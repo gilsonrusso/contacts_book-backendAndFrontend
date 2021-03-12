@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 
 import "./plugins/bootstrapPlugins";
+import "./plugins/fontawesomePlugins";
 
 Vue.config.productionTip = false;
 

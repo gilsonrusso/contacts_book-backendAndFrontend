@@ -7,30 +7,42 @@
         </div>
         <div class="body">
           <div class="row">
-            <div class="col-12">
-              <div class="input-group mb-3 card_img_modal">
-                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="" />
-              </div>
+            <div class="col-12 container-camera">
+              <button
+                class="container-image"
+                type="button"
+                @click="openFileDialog()"
+              >
+                <img v-if="avatar" class="image-camera" :src="avatar" alt="" />
+                <img
+                  v-else
+                  class="image-camera img-camera"
+                  :src="cameraImage"
+                  alt=""
+                />
+              </button>
+
+              <button
+                v-show="avatar"
+                @click="avatar = null"
+                class="btn badge badge-light"
+                type="button"
+              >
+                <i class="fa fa-trash text-danger"></i>
+              </button>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
               <div class="input-group">
                 <input
+                  ref="inputFile"
                   type="file"
-                  class="form-control"
-                  id="inputGroupFile04"
-                  aria-describedby="inputGroupFileAddon04"
-                  aria-label="Upload"
-                  sm
+                  name="image"
+                  accept="image/*"
+                  class="d-none"
+                  @change="handleFile"
                 />
-                <!-- <button
-                  class="btn btn-outline-secondary"
-                  type="button"
-                  id="inputGroupFileAddon04"
-                >
-                  Button
-                </button> -->
               </div>
             </div>
           </div>
@@ -39,6 +51,7 @@
               <div class="mb-3">
                 <label for="inputName" class="form-label">Full Name</label>
                 <input
+                  v-model="data.name"
                   type="text"
                   class="form-control"
                   id="inputName"
@@ -52,6 +65,7 @@
               <div class="mb-3">
                 <label for="inputEmail" class="form-label">Email address</label>
                 <input
+                  v-model="data.email"
                   type="email"
                   class="form-control"
                   id="inputEmail"
@@ -65,6 +79,7 @@
               <div class="mb-3">
                 <label for="inputPhone" class="form-label">Phone Number</label>
                 <input
+                  v-model="data.phone"
                   type="text"
                   class="form-control"
                   id="inputPhone"
@@ -76,7 +91,9 @@
         </div>
         <div class="footer">
           <button @click="cancel" class="btn btn-outline-info">Cancel</button>
-          <button class="btn btn-outline-primary">Save</button>
+          <button @click="saveContact" class="btn btn-outline-primary">
+            Save
+          </button>
         </div>
       </div>
     </div>
@@ -86,14 +103,38 @@
 <script>
 export default {
   name: "modal-component",
+  props: ["data"],
   data() {
-    return {};
+    return {
+      cameraImage: require("@/assets/camera.svg"),
+      avatar: null,
+    };
   },
   methods: {
+    saveContact() {
+      this.$emit("save");
+    },
     cancel() {
       this.$emit("cancelModal");
     },
+    openFileDialog() {
+      this.$refs.inputFile.value = null;
+      this.$refs.inputFile.click();
+    },
+    handleFile(e) {
+      let image = e.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = (e) => {
+        this.avatar = e.target.result;
+      };
+    },
   },
+  // computed: {
+  //   fileName() {
+  //     return this.receivedImage ? this.receivedImage : "";
+  //   },
+  // },
 };
 </script>
 
@@ -121,14 +162,40 @@ export default {
   padding: 10px 40px;
 }
 
-.card_img_modal {
+.container-camera {
+  min-height: 9rem;
+  height: 9rem;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
-.card_img_modal img {
-  height: 8rem;
-  width: 8rem;
+
+.container-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 120px;
+  width: 120px;
   border-radius: 50%;
+}
+
+button.container-image {
+  border: none;
+}
+button.container-image:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.image-camera {
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+}
+
+.image-camera.img-camera {
+  height: 40% !important;
+  border-radius: 0 !important;
 }
 
 .footer {

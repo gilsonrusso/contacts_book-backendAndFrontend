@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Modal v-if="showModal" @cancelModal="showModal = !showModal" />
+    <Modal v-if="showModal" @cancelModal="showModal = !showModal" :data="contact" />
     <div class="row first">
       <div class="col-12 col-sm-6 col-md-6">
         <button @click="showModal = !showModal" class="btn btn-outline-primary">
@@ -15,7 +15,7 @@
           :key="contact.id"
           class="col-12 mb-2"
         >
-          <Card :data="contact" />
+          <Card @save="createContact()" :data="contact" />
         </div>
       </div>
     </div>
@@ -33,17 +33,37 @@ export default {
   data() {
     return {
       showModal: false,
+      contact: {},
       listContacts: [],
     };
   },
+  methods: {
+    async getContacts() {
+      await Api.listar()
+        .then((response) => {
+          this.listContacts = response.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    async createContact() {
+      await Api.create(this.contact)
+        .then(() => {
+          this.getContacts();
+          this.cleanForm();
+          this.showModal = false;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    cleanForm() {
+      this.contact = {};
+    },
+  },
   mounted() {
-    Api.listar()
-      .then((response) => {
-        this.listContacts = response.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.getContacts();
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <div class="card" style="width: 18rem">
     <div class="card_header">
       <div class="card_img">
-        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="" />
+        <img :src="data.image.url" alt="image-contact" />
       </div>
       <div class="card_title">
         <h2>{{ data.name }}</h2>
