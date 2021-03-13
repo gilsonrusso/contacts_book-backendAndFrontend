@@ -26,7 +26,7 @@ const contactRoutes = {
 
   async create(request, response) {
     const { name, email, phone } = request.body;
-    const { originalName: nameImage, size, filename: key } = request.file;
+    const { originalname: nameImage, size, filename: key } = request.file;
 
     if (!name) {
       return response
@@ -52,7 +52,7 @@ const contactRoutes = {
         nameImage,
         size,
         key,
-        url: "",
+        url: `http://localhost:3333/contacts/uploads/${key}`,
       },
     };
 
