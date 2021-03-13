@@ -53,7 +53,14 @@ export default {
         });
     },
     async createContact() {
-      await Api.create(this.contact)
+      const formData = new FormData();
+
+      formData.append("name", this.contact.name);
+      formData.append("email", this.contact.email);
+      formData.append("phone", this.contact.phone);
+      formData.append("file", this.contact.file, this.contact.file.name);
+
+      await Api.create(formData)
         .then(() => {
           this.getContacts();
           this.cleanForm();

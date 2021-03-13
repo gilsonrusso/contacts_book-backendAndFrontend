@@ -91,7 +91,7 @@
         </div>
         <div class="footer">
           <button @click="cancel" class="btn btn-outline-info">Cancel</button>
-          <button @click="save" class="btn btn-outline-primary">
+          <button @click="saveContact" class="btn btn-outline-primary">
             Save
           </button>
         </div>
@@ -111,7 +111,7 @@ export default {
     };
   },
   methods: {
-    save() {
+    saveContact() {
       this.$emit("save");
     },
     cancel() {
@@ -122,20 +122,15 @@ export default {
       this.$refs.inputFile.click();
     },
     handleFile(e) {
-      this.data.image = e.target.files[0]
       let image = e.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = (e) => {
         this.avatar = e.target.result;
       };
+      this.data.file = image;
     },
   },
-  // computed: {
-  //   fileName() {
-  //     return this.receivedImage ? this.receivedImage : "";
-  //   },
-  // },
 };
 </script>
 
@@ -157,6 +152,7 @@ export default {
 .card.card_style {
   height: 35rem;
   width: 30rem;
+  min-width: 360px;
 }
 
 .container_card {

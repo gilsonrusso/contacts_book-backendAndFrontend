@@ -5,6 +5,7 @@ export default {
     return http.get("/contacts");
   },
   create: (params) => {
+    console.log(params)
     return http.post("/contacts", params);
   },
 };

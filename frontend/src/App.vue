@@ -33,6 +33,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
+  min-width: 360px;
 }
 .container-fluid a {
   align-self: start;
