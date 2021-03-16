@@ -1,11 +1,16 @@
 import { http } from "../config/axiosConfig";
 
 export default {
-  listar: () => {
+  list: () => {
     return http.get("/contacts");
   },
   create: (params) => {
-    console.log(params)
     return http.post("/contacts", params);
   },
+  delete: (params) => {
+    return http.delete(`/contacts/${params}`);
+  },
+  // update: (id, params) => {
+  //   return http.put(`/contacts/${id}`, params);
+  // },
 };

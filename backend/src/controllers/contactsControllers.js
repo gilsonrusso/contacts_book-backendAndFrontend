@@ -93,7 +93,7 @@ const contactRoutes = {
 
   async update(request, response) {
     const { id } = request.params;
-    const { name, email, phone } = request.body;
+    const { email, phone } = request.body;
 
     if (!name) {
       return response
@@ -120,7 +120,6 @@ const contactRoutes = {
     }
 
     const contact = {
-      name,
       email,
       phone,
     };

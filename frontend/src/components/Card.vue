@@ -14,8 +14,18 @@
       <div class="card_footer">
         <span>phone: {{ data.phone }}</span>
         <div class="card_btn">
-          <button class="btn btn-rounded btn-sm btn-outline-primary">E</button>
-          <button class="btn btn-rounded btn-sm btn-outline-info">D</button>
+          <button
+            @click="watchContact"
+            class="btn btn-rounded btn-sm btn-outline-primary"
+          >
+            <i class="fas fa-eye text-primary"></i>
+          </button>
+          <button
+            @click="deleteContact"
+            class="btn btn-rounded btn-sm btn-outline-info"
+          >
+            <i class="fas fa-trash text-info"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -26,6 +36,14 @@
 export default {
   name: "card-component",
   props: ["data"],
+  methods: {
+    watchContact() {
+      this.$emit("watch");
+    },
+    deleteContact() {
+      this.$emit("deleteContact");
+    },
+  },
 };
 </script>
 
@@ -89,5 +107,9 @@ export default {
   height: 35px;
   width: 35px;
   border-radius: 50% !important;
+}
+
+.btn i:hover {
+  color: white !important;
 }
 </style>

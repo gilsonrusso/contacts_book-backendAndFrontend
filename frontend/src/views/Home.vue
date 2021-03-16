@@ -4,6 +4,7 @@
       v-if="showModal"
       :data="contact"
       @save="createContact"
+      @update="updateContact"
       @cancel="cancelModal"
     />
 
@@ -19,7 +20,11 @@
         v-for="contact in listContacts"
         :key="contact.id"
       >
-        <Card @save="createContact()" :data="contact" />
+        <Card
+          @watch="watchContact(contact)"
+          @deleteContact="deleteContact(contact)"
+          :data="contact"
+        />
       </div>
     </div>
   </div>
@@ -42,7 +47,7 @@ export default {
   },
   methods: {
     async getContacts() {
-      await Api.listar()
+      await Api.list()
         .then((response) => {
           this.listContacts = response.data;
         })
@@ -67,6 +72,32 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    async deleteContact({ _id }) {
+      await Api.delete(_id).then(() => {
+        this.getContacts();
+        this.cleanForm();
+        this.showModal = false;
+      });
+    },
+    async updateContact() {
+      const formData = new FormData();
+
+      formData.append("name", this.contact.name);
+      formData.append("email", this.contact.email);
+      formData.append("phone", this.contact.phone);
+      formData.append("file", this.contact.file, this.contact.file.name);
+
+      await Api.update(this.contact._id, formData).then(() => {
+        this.getContacts();
+        this.cleanForm();
+        this.showModal = false;
+      });
+    },
+
+    watchContact(contact) {
+      this.contact = { ...contact };
+      this.showModal = true;
     },
     cancelModal() {
       this.cleanForm();

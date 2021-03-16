@@ -9,6 +9,7 @@
           <div class="row">
             <div class="col-12 container-camera">
               <button
+                :disabled="this.data._id"
                 class="container-image"
                 type="button"
                 @click="openFileDialog()"
@@ -23,6 +24,7 @@
               </button>
 
               <button
+                :disabled="this.data._id"
                 v-show="avatar"
                 @click="avatar = null"
                 class="btn badge badge-light"
@@ -36,6 +38,7 @@
             <div class="col-12">
               <div class="input-group">
                 <input
+                  :disabled="this.data._id"
                   ref="inputFile"
                   type="file"
                   name="image"
@@ -51,6 +54,7 @@
               <div class="mb-3">
                 <label for="inputName" class="form-label">Full Name</label>
                 <input
+                  :disabled="this.data._id"
                   v-model="data.name"
                   type="text"
                   class="form-control"
@@ -65,6 +69,7 @@
               <div class="mb-3">
                 <label for="inputEmail" class="form-label">Email address</label>
                 <input
+                  :disabled="this.data._id"
                   v-model="data.email"
                   type="email"
                   class="form-control"
@@ -79,6 +84,7 @@
               <div class="mb-3">
                 <label for="inputPhone" class="form-label">Phone Number</label>
                 <input
+                  :disabled="this.data._id"
                   v-model="data.phone"
                   type="text"
                   class="form-control"
@@ -91,7 +97,11 @@
         </div>
         <div class="footer">
           <button @click="cancel" class="btn btn-outline-info">Cancel</button>
-          <button @click="saveContact" class="btn btn-outline-primary">
+          <button
+            :disabled="this.data._id"
+            @click="saveContact"
+            class="btn btn-outline-primary"
+          >
             Save
           </button>
         </div>
@@ -107,12 +117,16 @@ export default {
   data() {
     return {
       cameraImage: require("@/assets/camera.svg"),
-      avatar: null,
+      avatar: this.data._id ? this.data.image.url : null,
     };
   },
   methods: {
     saveContact() {
-      this.$emit("save");
+      if (this.data._id) {
+        this.$emit("update");
+      } else {
+        this.$emit("save");
+      }
     },
     cancel() {
       this.$emit("cancel");
