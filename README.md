@@ -1,7 +1,7 @@
 # Contacts Book
 
 <p align="center">
-  <img width="460" src="frontend/src/assets/for_github/img-main.png" /> 
+  <img width="600" src="frontend/src/assets/for_github/img-main.png" /> 
 </p>
 
 ## Projeto de Estudo com Node Js | Vue Js | MongoDB | Docker
