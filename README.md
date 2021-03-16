@@ -14,4 +14,4 @@ um Frontend.
 Crie uma pasta fora da src com o nome temp e dentro dela crie outra com o nome uploads
 para armazenar temporariamente as fotos dos contatos.
 
-cmd: docker-compose-up
+cmd: docker-compose up
