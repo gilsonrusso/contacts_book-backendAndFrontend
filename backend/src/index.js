@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/contacts/uploads", express.static(path.resolve(__dirname, "..", "temp", "uploads")));
+app.use("/contacts/uploads", express.static(path.resolve(__dirname, "uploads")));
 app.use(morgan("dev")); 
 app.use(routes);
 

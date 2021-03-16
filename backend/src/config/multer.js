@@ -4,10 +4,10 @@ const crypto = require("crypto");
 
 module.exports = {
   // defini pra onde vão os arquivos assim que fizer o upload
-  dest: path.resolve(__dirname, "..", "..", "temp", "uploads"),
+  dest: path.resolve(__dirname, "..", "uploads"),
   storage: multer.diskStorage({
     destination: (request, file, callback) => {
-      callback(null, path.resolve(__dirname, "..", "..", "temp", "uploads"));
+      callback(null, path.resolve(__dirname, "..", "uploads"));
     },
     filename: (request, file, callback) => {
       // garantir que as imagens tenha o nome unico
