@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <nav class="navbar">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Contacts <strong>Book</strong></a>
+    <header>
+      <nav>
+        <a class="logo" href="#">Contacts <strong>Book</strong></a>
         <small>Never forget a contact again!</small>
-      </div>
-    </nav>
+      </nav>
+    </header>
     <Home />
   </div>
 </template>
@@ -25,23 +25,25 @@ export default {
   box-sizing: border-box;
 }
 
-.navbar {
+header nav {
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
   border-bottom: 0.5px solid rgb(214, 214, 214);
 }
 
-.container-fluid {
-  display: flex;
-  flex-direction: column;
-  align-content: flex-start;
-  min-width: 360px;
-}
-.container-fluid a {
-  align-self: start;
-}
-.container-fluid small {
+nav small {
   font-size: 0.6rem;
-  letter-spacing: 0.3ch;
-  color: gray;
-  line-height: 5px;
+  letter-spacing: 0.1rem;
+  margin-top: -8px;
+  margin-left: 5px;
+}
+
+.logo {
+  text-decoration: none !important;
+  font-weight: 600;
+  padding: 5px;
+  width: 150px;
 }
 </style>

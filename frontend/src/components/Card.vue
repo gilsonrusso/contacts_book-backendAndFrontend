@@ -32,7 +32,7 @@ export default {
 <style>
 .card {
   height: 150px;
-  min-width: 288px;
+  width: 100%;
 }
 .card_header {
   height: 70px;

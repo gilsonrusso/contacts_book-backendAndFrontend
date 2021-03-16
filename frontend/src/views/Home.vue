@@ -1,27 +1,25 @@
 <template>
-  <div class="container">
+  <div class="home">
     <Modal
       v-if="showModal"
       :data="contact"
       @save="createContact"
       @cancel="cancelModal"
     />
-    <div class="row first">
-      <div class="col-12 col-sm-6 col-md-6">
-        <button @click="showModal = !showModal" class="btn btn-outline-primary">
-          New Contact
-        </button>
-      </div>
+
+    <div class="menu">
+      <button @click="showModal = !showModal" class="btn btn-outline-primary">
+        New Contact
+      </button>
     </div>
-    <div class="row">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4">
-        <div
-          v-for="contact in listContacts"
-          :key="contact.id"
-          class="col-12 mb-2"
-        >
-          <Card @save="createContact()" :data="contact" />
-        </div>
+
+    <div class="container_main">
+      <div
+        class="card_decker"
+        v-for="contact in listContacts"
+        :key="contact.id"
+      >
+        <Card @save="createContact()" :data="contact" />
       </div>
     </div>
   </div>
@@ -85,8 +83,23 @@ export default {
 </script>
 
 <style>
-.first {
-  height: 14vh;
-  align-content: center;
+.home {
+  max-width: 1300px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.menu {
+  margin-left: 10px;
+}
+
+.container_main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card_decker {
+  margin: 10px;
 }
 </style>
