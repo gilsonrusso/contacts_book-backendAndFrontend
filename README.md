@@ -1,17 +1,34 @@
 # Contacts Book
 
+<p align="center">
+  <img width="460" src="frontend/src/assets/for_github/img-main.png" /> 
+</p>
+
 ## Projeto de Estudo com Node Js | Vue Js | MongoDB | Docker
 
-
 ## Descrição do Projeto
-App de agenda simples com o intuito do aprendizado das tecnologias: Node Js, 
-Vue Js, Mongo Db e Docker. O projeto é uma agenda de contatos e contempla a criação de uma API,
-um Frontend e um banco de dados.
-
+Esté é um projeto de uma agenda simples com o intuito do aprendizado das tecnologias: [Node Js] https://nodejs.org/en/, 
+[VueJs] https://br.vuejs.org/, [Mongo db] https://www.mongodb.com/ e [Docker] https://www.docker.com/.
 
 ## Start do Projeto
 
-Crie uma pasta fora da src com o nome temp e dentro dela crie outra com o nome uploads
-para armazenar temporariamente as fotos dos contatos.
+Você precisar ter o docker intalado em sua máquina ou pode startar cada serviço individual!
+As dependências serão instaladas automagicamente! rs 
 
-cmd: docker-compose up
+### Usando Docker
+```
+ docker-compose up ou docker-compose up -d
+```
+### Start individual dos serviços
+```
+ yarn start
+```
+
+
+### Tela de criação do novo contato!
+<p align="center">
+  <img width="360" src="frontend/src/assets/for_github/save-contact.png" /> 
+</p>
+
+
+### Projeto ainda está em constante evolução!
