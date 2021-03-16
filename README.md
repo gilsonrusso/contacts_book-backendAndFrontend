@@ -5,8 +5,8 @@
 
 ## Descrição do Projeto
 App de agenda simples com o intuito do aprendizado das tecnologias: Node Js, 
-Vue Js, Mongo Db e Docker. O projeto contempla a criação de uma API e
-um Frontend.
+Vue Js, Mongo Db e Docker. O projeto é uma agenda de contatos e contempla a criação de uma API,
+um Frontend e um banco de dados.
 
 
 ## Start do Projeto
