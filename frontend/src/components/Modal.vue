@@ -1,6 +1,6 @@
 <template>
   <div class="overlay animationDown">
-    <div class="card card_style animationRight">
+    <form @submit="saveContact" class="card card_style animationRight">
       <div class="container_card">
         <div class="header">
           <h3>Contact</h3>
@@ -60,6 +60,10 @@
                   class="form-control"
                   id="inputName"
                   placeholder="Full name"
+                  minlength="8"
+                  maxlength="40"
+                  required
+                  :class="nameRequired"
                 />
               </div>
             </div>
@@ -75,6 +79,9 @@
                   class="form-control"
                   id="inputEmail"
                   placeholder="name@example.com"
+                  maxlength="40"
+                  required
+                  :class="emailRequired"
                 />
               </div>
             </div>
@@ -89,7 +96,11 @@
                   type="text"
                   class="form-control"
                   id="inputPhone"
-                  placeholder="92 999999999"
+                  placeholder="DDD999999999"
+                  minlength="11"
+                  maxlength="12"
+                  required
+                  :class="phoneRequired"
                 />
               </div>
             </div>
@@ -98,15 +109,15 @@
         <div class="footer">
           <button @click="cancel" class="btn btn-outline-info">Cancel</button>
           <button
-            :disabled="this.data._id"
-            @click="saveContact"
+            :disabled="disabledButton"
+            type="submit"
             class="btn btn-outline-primary"
           >
             Save
           </button>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 
@@ -121,12 +132,13 @@ export default {
     };
   },
   methods: {
-    saveContact() {
+    saveContact(e) {
       if (this.data._id) {
         this.$emit("update");
       } else {
         this.$emit("save");
       }
+      e.preventDefault();
     },
     cancel() {
       this.$emit("cancel");
@@ -143,6 +155,20 @@ export default {
         this.avatar = e.target.result;
       };
       this.data.file = image;
+    },
+  },
+  computed: {
+    nameRequired: function () {
+      return this.data.name == "" ? "requiredField" : "";
+    },
+    emailRequired: function () {
+      return this.data.email == "" ? "requiredField" : "";
+    },
+    phoneRequired: function () {
+      return this.data.phone == "" ? "requiredField" : "";
+    },
+    disabledButton: function () {
+      return this.data._id || this.avatar == null ? true : false;
     },
   },
 };
@@ -229,6 +255,9 @@ button.container-image:hover {
 }
 .animationDown {
   animation: moveDown 0.5s ease-in;
+}
+.requiredField {
+  border: 1px solid red !important;
 }
 
 @keyframes moveLeft {

@@ -5,14 +5,14 @@
         <img :src="data.image.url" alt="image-contact" />
       </div>
       <div class="card_title">
-        <h2>{{ data.name }}</h2>
+        <h2>{{ data.name | nameMask  }}</h2>
       </div>
     </div>
 
     <div class="card_body">
       <p>e-mail: {{ data.email }}</p>
       <div class="card_footer">
-        <span>phone: {{ data.phone }}</span>
+        <span>phone: {{ data.phone | phoneMask  }}</span>
         <div class="card_btn">
           <button
             @click="watchContact"

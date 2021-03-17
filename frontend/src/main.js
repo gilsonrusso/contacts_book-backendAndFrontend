@@ -3,6 +3,7 @@ import App from "./App.vue";
 
 import "./plugins/bootstrapPlugins";
 import "./plugins/fontawesomePlugins";
+import "./config/filters";
 
 Vue.config.productionTip = false;
 
