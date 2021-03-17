@@ -1,6 +1,6 @@
 <template>
   <div class="overlay animationDown">
-    <form @submit="saveContact" class="card card_style animationRight">
+    <form @submit.prevent="saveContact" class="card card_style animationRight">
       <div class="container_card">
         <div class="header">
           <h3>Contact</h3>
@@ -132,13 +132,12 @@ export default {
     };
   },
   methods: {
-    saveContact(e) {
+    saveContact() {
       if (this.data._id) {
         this.$emit("update");
       } else {
         this.$emit("save");
       }
-      e.preventDefault();
     },
     cancel() {
       this.$emit("cancel");
